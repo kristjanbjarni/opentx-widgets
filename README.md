@@ -37,14 +37,14 @@ Display GPS coordinates in decimal degrees or [Plus code] in a widget.
 ## HomeArrow widget
 ![HomeArrow widget](docs/images/HomeArrow.png)
 
-Displays distance and an arrow to the home position in a widget.
+Displays distance and an arrow to the home position in a widget. Uses GPS telemetry to calculate distance and direction to home
 
 ### HomeArrow widget settings
 ![HomeArrow widget settings](docs/images/HomeArrow_settings.png)
 - `TextColor` The normal text color
 - `DisabledColor` The text color when GPS is lost
 - `Shadow` Show text shadow
-- `Armed` Source for Armed status. This must be positive value
+- `Armed` Source for Armed status. This must be positive value when armed. When this becomes active the current position is used as the home position.
 - `Imperial` Display imperial values instead of metric
 
 ## AvgBatt widget

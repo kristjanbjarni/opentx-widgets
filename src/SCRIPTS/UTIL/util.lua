@@ -43,14 +43,14 @@ end
 
 -- Returns the angle/bearing in degrees between two GPS positions
 function getGPSBearing(p1,p2)
-	if (p1.lat == p2.lat and p1.lon == p2.lon) then
-		return 0
-	end
-	local lat1, lon1, lat2, lon2 = math.rad(p1.lat), math.rad(p1.lon), math.rad(p2.lat), math.rad(p2.lon)
-	local lat2c = math.cos(lat2)
-	local e = math.sin(lon2 - lon1) * lat2c
-	local n = math.cos(lat1) * math.sin(lat2) - math.sin(lat1) * lat2c * math.cos(lon2 - lon1)
-	local brg = math.deg(math.atan2(e, n))
+  if (p1.lat == p2.lat and p1.lon == p2.lon) then
+    return 0
+  end
+  local lat1, lon1, lat2, lon2 = math.rad(p1.lat), math.rad(p1.lon), math.rad(p2.lat), math.rad(p2.lon)
+  local lat2c = math.cos(lat2)
+  local e = math.sin(lon2 - lon1) * lat2c
+  local n = math.cos(lat1) * math.sin(lat2) - math.sin(lat1) * lat2c * math.cos(lon2 - lon1)
+  local brg = math.deg(math.atan2(e, n))
   return (brg + 360) % 360
 end
 
@@ -207,27 +207,27 @@ function drawPolygon(p, x, y, resize, color)
 end
 
 local function getcode(lat,lon)
-	local i = math.floor(lat)
-	local codepair = PLUS_CODES[i]
-	lat = 20 * (lat - i)
-	i = math.floor(lon)
-	codepair = codepair .. PLUS_CODES[i]
-	lon = 20 * (lon - i)
-	return lat,lon,codepair
+  local i = math.floor(lat)
+  local codepair = PLUS_CODES[i]
+  lat = 20 * (lat - i)
+  i = math.floor(lon)
+  codepair = codepair .. PLUS_CODES[i]
+  lon = 20 * (lon - i)
+  return lat,lon,codepair
 end
 
 function getPlusCode(lat,lon)
-	lat = (lat + 90) / 20
-	lon = (lon + 180) / 20
-	local pluscode = ""
-	for i = 1, 4 do
-		lat, lon, codepair = getcode(lat, lon)
-		pluscode = pluscode .. codepair
-	end
-	pluscode = pluscode .. "+"
-	lat, lon, codepair = getcode(lat, lon)
-	pluscode = pluscode .. codepair
-	pluscode = pluscode .. PLUS_CODES[4 * math.floor(lat / 5) + math.floor(lon / 4)]
+  lat = (lat + 90) / 20
+  lon = (lon + 180) / 20
+  local pluscode = ""
+  for i = 1, 4 do
+    lat, lon, codepair = getcode(lat, lon)
+    pluscode = pluscode .. codepair
+  end
+  pluscode = pluscode .. "+"
+  lat, lon, codepair = getcode(lat, lon)
+  pluscode = pluscode .. codepair
+  pluscode = pluscode .. PLUS_CODES[4 * math.floor(lat / 5) + math.floor(lon / 4)]
   return pluscode
 end
 

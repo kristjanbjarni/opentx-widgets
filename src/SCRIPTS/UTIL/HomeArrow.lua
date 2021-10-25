@@ -39,7 +39,6 @@ end
 -- Update GPS in background
 local function updateGPS(self,armed_switch)
   local gps = getValueGPS()
-  --gps = {lat="64.123456",lon=-21.123456}
   local valid = gps ~= nil
   if valid then
     valid = gps.lat ~= 0 and gps.lon ~= 0

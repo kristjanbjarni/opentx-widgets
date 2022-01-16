@@ -1,9 +1,9 @@
 assert(loadScript("/SCRIPTS/UTIL/util.lua"))()
 assert(loadScript("/SCRIPTS/UTIL/HomeArrow.lua"))()
 
--- Constants, change as needed
+-- DON'T CHANGE THIS VALUES - USE WIDGET CONFIGURATION ON YOUR RADIO INSTEAD
 local ARMED_SWITCH = "sf" -- Switch used for arming
-local ARMED_SWITCH_REVERSED = true -- Is arm switch position reversed for arming
+local ARMED_SWITCH_REVERSED = false -- Is arm switch position reversed for arming
 local IMPERIAL = false -- Display in imperial units
 
 -- Variables

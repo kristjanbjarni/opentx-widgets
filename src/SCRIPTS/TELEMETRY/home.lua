@@ -12,7 +12,7 @@ local armed_id = nil
 
 local function init()
   armed_id = getFieldInfo(ARMED_SWITCH).id
-  home = HomeArrow.new(IMPERIAL, true)
+  home = HomeArrow.new(IMPERIAL,ARMED_SWITCH_REVERSED)
 end
 
 local function background()

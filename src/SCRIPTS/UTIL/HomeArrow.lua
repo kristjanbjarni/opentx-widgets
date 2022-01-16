@@ -38,7 +38,6 @@ end
 
 -- Update GPS in background
 local function updateGPS(self,armed_switch)
-  self.armed_switch = armed_switch
   local gps = getValueGPS()
   local valid = gps ~= nil
   if valid then
@@ -147,7 +146,6 @@ local function new(dsp_imperial,arm_switch_reversed)
     active = false,
     last_time_ms = 0,
     last_armed = false,
-    armed_switch = 1,
     angle = 0,
     distance = 0,
     imperial = dsp_imperial or false,

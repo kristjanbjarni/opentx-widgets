@@ -38,6 +38,7 @@ end
 
 -- Update GPS in background
 local function updateGPS(self,armed_switch)
+  self.armed_switch = armed_switch
   local gps = getValueGPS()
   local valid = gps ~= nil
   if valid then
@@ -118,6 +119,10 @@ local function setImperial(self,imperial)
   self.imperial = imperial
 end
 
+local function setArmedReversed(self,reversed)
+  self.arming_reversed = reversed
+end
+
 local function getLastGPS(self)
   return self.last_gps
 end
@@ -142,6 +147,7 @@ local function new(dsp_imperial,arm_switch_reversed)
     active = false,
     last_time_ms = 0,
     last_armed = false,
+    armed_switch = 1,
     angle = 0,
     distance = 0,
     imperial = dsp_imperial or false,
@@ -152,6 +158,7 @@ local function new(dsp_imperial,arm_switch_reversed)
     getDistanceDisplay = getDistanceDisplay,
     isActive = isActive,
     setImperial = setImperial,
+    setArmedReversed = setArmedReversed,
     hasHomePosition = hasHomePosition,
     drawArrow = drawArrow,
     drawHouse = drawHouse,

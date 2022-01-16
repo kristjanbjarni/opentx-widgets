@@ -15,6 +15,7 @@ local options = {
   { "DisabledColor", COLOR, DEFAULT_DISABLEDCOLOR },
   { "Shadow", BOOL, 1 },
   { "Armed", SOURCE, 1 }, -- Source for armed status
+  { "ArmedReversed", BOOL, 1}, -- Arm reversed
   { "Imperial", BOOL, 0 } -- Imperial units
 }
 
@@ -32,6 +33,9 @@ local function create(zone, options)
   if widget.options.Armed == nil then
     widget.options.Armed = 1
   end
+  if widget.options.ArmedReversed == nil then
+    widget.options.ArmedReversed = 1
+  end
   if widget.options.Imperial == nil then
     widget.options.Imperial = 0    
   end
@@ -44,6 +48,8 @@ local function update(widget, options)
   widget.options = options
   local imperial = widget.options.Imperial == 1
   widget.home:setImperial(imperial)
+  local reversed = widget.options.ArmedReversed == 1
+  widget.home:setArmedReversed(reversed)
 end
 
 local function background(widget)

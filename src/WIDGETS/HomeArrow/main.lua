@@ -34,7 +34,7 @@ local function create(zone, options)
     widget.options.Armed = 1
   end
   if widget.options.ArmedReversed == nil then
-    widget.options.ArmedReversed = 1
+    widget.options.ArmedReversed = 0
   end
   if widget.options.Imperial == nil then
     widget.options.Imperial = 0    

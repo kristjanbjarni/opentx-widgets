@@ -118,6 +118,10 @@ local function setImperial(self,imperial)
   self.imperial = imperial
 end
 
+local function setArmedReversed(self,reversed)
+  self.arming_reversed = reversed
+end
+
 local function getLastGPS(self)
   return self.last_gps
 end
@@ -152,6 +156,7 @@ local function new(dsp_imperial,arm_switch_reversed)
     getDistanceDisplay = getDistanceDisplay,
     isActive = isActive,
     setImperial = setImperial,
+    setArmedReversed = setArmedReversed,
     hasHomePosition = hasHomePosition,
     drawArrow = drawArrow,
     drawHouse = drawHouse,

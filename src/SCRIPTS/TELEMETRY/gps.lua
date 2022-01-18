@@ -1,7 +1,8 @@
+-- Note: This telemetry screen is for FrSky Taranis only
 assert(loadScript("/SCRIPTS/UTIL/util.lua"))()
 assert(loadScript("/SCRIPTS/UTIL/HomeArrow.lua"))()
 
--- Constants, change as needed
+-- Constants, change as needed since there is no configuration screen available in FrSky Taranis for telemetry
 local SHOW_PLUSCODE = true
 
 -- Variables

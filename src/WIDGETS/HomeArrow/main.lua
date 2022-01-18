@@ -15,8 +15,7 @@ local options = {
   { "DisabledColor", COLOR, DEFAULT_DISABLEDCOLOR },
   { "Shadow", BOOL, 1 },
   { "Armed", SOURCE, 1 }, -- Source for armed status
-  { "ArmedReversed", BOOL, 1}, -- Arm reversed
-  { "Imperial", BOOL, 0 } -- Imperial units
+  { "ArmedReversed", BOOL, 0} -- Arm reversed
 }
 
 local function create(zone, options)
@@ -36,9 +35,6 @@ local function create(zone, options)
   if widget.options.ArmedReversed == nil then
     widget.options.ArmedReversed = 0
   end
-  if widget.options.Imperial == nil then
-    widget.options.Imperial = 0    
-  end
   local z = getZone(zone)
   widget.home_image = Bitmap.open(IMAGE_FOLDER.."/home_"..HOME_SIZES[z]..".png")
   return widget
@@ -46,8 +42,6 @@ end
 
 local function update(widget, options)
   widget.options = options
-  local imperial = widget.options.Imperial == 1
-  widget.home:setImperial(imperial)
   local reversed = widget.options.ArmedReversed == 1
   widget.home:setArmedReversed(reversed)
 end

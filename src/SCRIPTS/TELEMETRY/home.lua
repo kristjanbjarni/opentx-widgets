@@ -1,10 +1,10 @@
+-- Note: This telemetry screen is for FrSky Taranis only
 assert(loadScript("/SCRIPTS/UTIL/util.lua"))()
 assert(loadScript("/SCRIPTS/UTIL/HomeArrow.lua"))()
 
--- DON'T CHANGE THIS VALUES - USE WIDGET CONFIGURATION ON YOUR RADIO INSTEAD
+-- Constants, change as needed since there is no configuration screen available in FrSky Taranis for telemetry
 local ARMED_SWITCH = "sf" -- Switch used for arming
 local ARMED_SWITCH_REVERSED = false -- Is arm switch position reversed for arming
-local IMPERIAL = false -- Display in imperial units
 
 -- Variables
 local home = nil
@@ -12,7 +12,7 @@ local armed_id = nil
 
 local function init()
   armed_id = getFieldInfo(ARMED_SWITCH).id
-  home = HomeArrow.new(IMPERIAL,ARMED_SWITCH_REVERSED)
+  home = HomeArrow.new(ARMED_SWITCH_REVERSED)
 end
 
 local function background()

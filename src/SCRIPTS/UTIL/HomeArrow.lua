@@ -87,7 +87,8 @@ end
 -- Return distance with correct units for display
 local function getDistanceDisplay(self)
   local v = self.distance
-  if self.imperial then
+  local imperial = getGeneralSettings().imperial ~= 0;
+  if imperial then
     v = v * FEET_IN_METERS
     if v > MILE_IN_FEETS then
       v = v / MILE_IN_FEETS
@@ -114,10 +115,6 @@ local function hasHomePosition(self)
   return self.home_gps ~= nil
 end
 
-local function setImperial(self,imperial)
-  self.imperial = imperial
-end
-
 local function setArmedReversed(self,reversed)
   self.arming_reversed = reversed
 end
@@ -135,7 +132,7 @@ local function drawHouse(self,x,y,size,color)
   drawPolygon(HOUSE,x,y,size,color)
 end
 
-local function new(dsp_imperial,arm_switch_reversed)
+local function new(arm_switch_reversed)
   return 
   {
     -- Variables
@@ -148,14 +145,12 @@ local function new(dsp_imperial,arm_switch_reversed)
     last_armed = false,
     angle = 0,
     distance = 0,
-    imperial = dsp_imperial or false,
     arming_reversed = arm_switch_reversed or false,
     -- Functions
     updateGPS = updateGPS,
     updateDisplay = updateDisplay,
     getDistanceDisplay = getDistanceDisplay,
     isActive = isActive,
-    setImperial = setImperial,
     setArmedReversed = setArmedReversed,
     hasHomePosition = hasHomePosition,
     drawArrow = drawArrow,

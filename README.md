@@ -15,7 +15,7 @@ Go to the releases page and download the latest release and unzip to the root fo
 - [gps telemetry](#gps-telemetry)
 - [home telemetry](#home-telemetry)
 
-## GPS widget
+## GPS widget (WIDGETS/GPS/main.lua)
 Display GPS coordinates in decimal degrees or [Plus code] in a widget.
 
 ![GPS widget](docs/images/GPS.png)
@@ -34,7 +34,7 @@ Display GPS coordinates in decimal degrees or [Plus code] in a widget.
 - `Shadow` Show text shadow
 - `PlusCode` Display PlusCode instead of decimal degrees
 
-## HomeArrow widget
+## HomeArrow widget (WIDGETS/HomeArrow/main.lua)
 ![HomeArrow widget](docs/images/HomeArrow.png)
 
 Displays distance and an arrow to the home position in a widget. Uses GPS telemetry to calculate distance and direction to home
@@ -45,9 +45,9 @@ Displays distance and an arrow to the home position in a widget. Uses GPS teleme
 - `DisabledColor` The text color when GPS is lost
 - `Shadow` Show text shadow
 - `Armed` Source for Armed status. This must be positive value when armed. When this becomes active the current position is used as the home position.
-- `Imperial` Display imperial values instead of metric
+- `ArmedReversed` Reverses the armed source meaning. So when armed value becomes negative the current position is used as the home position.
 
-## AvgBatt widget
+## AvgBatt widget (WIDGETS/AvgBatt/main.lua)
 Displays average battery cell voltage in a widget.
 
 ![AvgBatt widget](docs/images/AvgBatt.png)
@@ -60,13 +60,13 @@ Displays average battery cell voltage in a widget.
 - `DisabledColor` The text color when telemetry is lost
 - `Shadow` Show text shadow
 
-## gps telemetry
-Displays GPS coordinates in decimal degrees and [Plus code] in a telemetry screen (Taranis only)
+## gps telemetry (SCRIPTS/TELEMETRY/gps.lua)
+Displays GPS coordinates in decimal degrees and [Plus code] in a telemetry full screen (FrSky Taranis only)
 
 ![gps telemetry](docs/images/gps_taranis.png)
 
-## home telemetry
-Displays distance and an arrow to the home position in a telemetry screen (Taranis only)
+## home telemetry (SCRIPTS/TELEMETRY/home.lua)
+Displays distance and an arrow to the home position in a telemetry full screen (FrSky Taranis only)
 
 ![home telemetry](docs/images/home_taranis.png)
 

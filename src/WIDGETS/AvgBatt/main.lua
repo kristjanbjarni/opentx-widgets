@@ -2,8 +2,6 @@ assert(loadScript("/SCRIPTS/UTIL/util.lua"))()
 
 local DEFAULT_TEXTCOLOR = WHITE
 local DEFAULT_DISABLEDCOLOR = DARKGREY
-local TITLE_SIZES = {[0]=0,1,3,3,3}
-local VALUE_SIZES = {[0]=2,2,4,4,4}
 
 local options = {
   { "Batt", SOURCE, 1 },
@@ -64,17 +62,13 @@ function refresh(widget)
   local shadow = widget.options.Shadow == 1
   local cells = widget.options.Cells or 1
   local zone = getZone(widget.zone)
-  local title_size = TITLE_SIZES[zone]
-  local value_size = VALUE_SIZES[zone]
   local value = widget.last_batt
   if not widget.active then
     color = widget.options.DisabledColor
   end
   value = round(value / cells,2)
   value = string.format("%.2f",value)
-  drawTextZone(widget.zone,0,0,"Batt",color,shadow,title_size)
-  local y = getFontHeightSpacing(title_size)
-  drawTextZone(widget.zone,0,y,value.."V",color,shadow,value_size)
+  drawValueZone(widget.zone,"Batt",value,color,shadow)
 end
 
 return { name="AvgBatt", options=options, create=create, update=update, background=background, refresh=refresh}

@@ -12,6 +12,7 @@ Go to the releases page and download the latest release and unzip to the root fo
 - [GPS widget](#gps-widget-widgetsgpsmainlua)
 - [HomeArrow widget](#homearrow-widget-widgetshomearrowmainlua)
 - [AvgBatt widget](#avgbatt-widget-widgetsavgbattmainlua)
+- [CrsfLQ widget](#crsflq-widget-widgetscrsflqmainlua)
 - [gps telemetry](#gps-telemetry-scriptstelemetrygpslua)
 - [home telemetry](#home-telemetry-scriptstelemetryhomelua)
 
@@ -60,6 +61,17 @@ Displays average battery cell voltage in a widget.
 - `DisabledColor` The text color when telemetry is lost
 - `Shadow` Show text shadow
 
+## CrsfLQ widget (WIDGETS/CrsfLQ/main.lua)
+Displays [LQ] value for [Crossfire] link (Combined RFMD and RLQY).
+
+![CrsfLQ widget](docs/images/CrsfLQ.png)
+
+### CrsfLQ widget settings
+![CrsfLQ widget settings](docs/images/CrsfLQ_settings.png)
+- `TextColor` The normal text color
+- `DisabledColor` The text color when telemetry is lost
+- `Shadow` Show text shadow
+
 ## gps telemetry (SCRIPTS/TELEMETRY/gps.lua)
 Displays GPS coordinates in decimal degrees and [Plus code] in a telemetry full screen (FrSky Taranis only)
 
@@ -79,3 +91,5 @@ To change the switch to use for arming you can edit the `SCRIPTS/TELEMETRY/home.
 [OpenTX]: https://www.open-tx.org/
 [EdgeTX]: https://github.com/EdgeTX/edgetx
 [Plus code]: https://en.wikipedia.org/wiki/Open_Location_Code
+[LQ]: https://oscarliang.com/lq-rssi-tbs-crossfire/
+[Crossfire]: https://www.team-blacksheep.com/products/prod:crossfire_tx

@@ -5,12 +5,43 @@ FONT = {["SMLSIZE"] = 0,["NORMAL"] = 1,["MIDSIZE"] = 2,["DBLSIZE"] = 3,["XXLSIZE
 local FONT_FLAGS = {[0]=SMLSIZE,0,MIDSIZE,DBLSIZE,XXLSIZE}
 local FONT_WIDTHS = {[0]=9,11,15,18,40}
 local FONT_HEIGHTS = {[0]=9,12,17,23,47}
-local FONT_X_MARGIN = {[0]=0,0,0,0,0}
+local FONT_X_MARGIN = {[0]=0,2,2,2,2}
 local FONT_Y_SPACING = {[0]=4,4,4,4,4}
 local FONT_WIDTHS_BW = {[0]=4,5,8,10}
 local FONT_HEIGHTS_BW = {[0]=6,7,10,14}
 local PLUS_CODES = {[0]="2","3","4","5","6","7","8","9","C","F","G","H","J","M","P","Q","R","V","W","X"}
 local gps_id = nil
+local DRAW_RIGHT_ALIGN = -2147483648
+local NAME_SIZES = {[0]=0,1,3,3,3}
+local VALUE_SIZES = {[0]=2,2,4,4,4}
+
+local ZONE_SIZES = {
+  [0]={z=0,w=70,h=39},
+  {z=1,w=160,h=32},
+  {z=2,w=180,h=70},
+  {z=3,w=192,h=152},
+  {z=0,w=196,h=42},
+  {z=1,w=196,h=56},
+  {z=2,w=196,h=85},
+  {z=3,w=196,h=170},
+  {z=2,w=225,h=98},
+  {z=3,w=225,h=207},
+  {z=1,w=240,h=56},
+  {z=1,w=240,h=75},
+  {z=2,w=240,h=113},
+  {z=3,w=240,h=227},
+  {z=1,w=392,h=42},
+  {z=1,w=392,h=56},
+  {z=3,w=392,h=85},
+  {z=4,w=392,h=170},
+  {z=1,w=426,h=47},
+  {z=4,w=460,h=207},
+  {z=4,w=460,h=252},
+  {z=1,w=480,h=75},
+  {z=3,w=480,h=113}
+  --{z=4,w=480,h=227},
+  --{z=4,w=480,h=272}
+}
 
 -- Return new point from x,y
 function point(x,y)
@@ -56,29 +87,11 @@ end
 
 -- Returns which zone size the widget zone is in
 -- Input: zone, The zone widget
--- Output: Integer, 0..4 (Top bar, 1/8 box, 1/4 box, 1/2 box, Full screen)
+-- Output: Integer, 0..4 (Top bar (0), 1/8 box (1), 1/4 box (2), 1/2 box (3), Full screen (4))
 function getZone(zone)
-  if zone.w<=70 then
-    return 0
-  elseif zone.w<=160 then
-    return 1
-  elseif zone.w<=180 then
-    return 2
-  elseif zone.w<=192 then
-    return 3
-  elseif zone.w<=225 then
-    if zone.h<=98 then
-      return 2      
-    else
-      return 3
-    end
-  elseif zone.w<=232 then
-    if zone.h<=49 then
-      return 1
-    elseif zone.h<=102 then
-      return 2
-    else
-      return 3
+  for i=0,#ZONE_SIZES do
+    if zone.w<=ZONE_SIZES[i].w and zone.h<=ZONE_SIZES[i].h then
+      return ZONE_SIZES[i].z
     end
   end
   return 4
@@ -143,6 +156,15 @@ function drawTextZone(zone,x,y,text,color,shadow,font)
   end  
   lcd.drawText(zone.x+x,zone.y+y,text,flags)
 end
+
+function drawValueZone(zone,name,value,color,shadow)
+  local z = getZone(zone)
+  local name_size = NAME_SIZES[z]
+  local value_size = VALUE_SIZES[z]
+  drawTextZone(zone,0,0,name,color,shadow,name_size)
+  local y = getFontHeightSpacing(name_size)
+  drawTextZone(zone,0,y,value,color,shadow,value_size)
+end  
 
 function drawText(x,y,text,font,flags)
   if not flags then
@@ -239,9 +261,11 @@ function getValueGPS()
       gps_id = gps_info.id
     end
   end
-  local v = getValue(gps_id)
-  if type(v) == "table" then
-    result = v
+  if gps_id then
+    local v = getValue(gps_id)
+    if type(v) == "table" then
+      result = v
+    end
   end
   return result
 end

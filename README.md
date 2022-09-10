@@ -56,7 +56,7 @@ Displays average battery cell voltage in a widget.
 ### AvgBatt widget settings
 ![AvgBatt widget settings](docs/images/AvgBatt_settings.png)
 - `Batt` Telemetry source for the total battery value
-- `Cells` Number of cells for battery
+- `Cells` Number of cells for battery or 0 value for auto detection of cells
 - `TextColor` The normal text color
 - `DisabledColor` The text color when telemetry is lost
 - `Shadow` Show text shadow

@@ -98,7 +98,7 @@ Displays [LQ] value for [Crossfire] link (Combined RFMD and RLQY).
 
 ## Image widget (WIDGETS/Image/main.lua)
 
-![image widget](docs/images/image.png)
+![image widget](docs/images/Image.png)
 
 Displays an image in a widget (EdgeTX color screen only). This can be handy to display pilot QR code, flight instructions or any image you might need. Put the images (Formats: .jpg, .png or .bmp) in folder WIDGETS/Image/images, make sure the filename isn't longer than 8 characters. Go to settings for the image widget. It will autofill with the first filename in the images folder. Input the correct filename that you want to use in the `Filename` field. Input only the filename without the file extension. Try to make sure the images you use are not to large (480x272 is maximum size) otherwise there will be an out of memory error.
 
@@ -111,6 +111,7 @@ Displays an image in a widget (EdgeTX color screen only). This can be handy to d
 ### Screenshot viewer tool (SCRIPTS/TOOLS/Screenshot viewer.lua)
 
 ![Screenshot viewer](docs/images/Screenshot_viewer.png)
+
 The Screenshot viewer tool displays all available screenshots in a list and then a screenshot can be selected to display in a full screen. (EdgeTX color screen only)
 
 ## gps telemetry (SCRIPTS/TELEMETRY/gps.lua)

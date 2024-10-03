@@ -108,7 +108,7 @@ Displays an image in a widget (EdgeTX color screen only). This can be handy to d
 
 - `Filename` The filename of the image (no extension)
 
-### Screenshot viewer tool (SCRIPTS/TOOLS/Screenshot viewer.lua)
+## Screenshot viewer tool (SCRIPTS/TOOLS/Screenshot viewer.lua)
 
 ![Screenshot viewer](docs/images/Screenshot_viewer.png)
 

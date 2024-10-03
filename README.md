@@ -10,7 +10,7 @@ The widgets have only been tested with EdgeTX 2.10.4 and OpenTX 2.3.14, older ve
 
 Go to the releases page and download the latest release and unzip to the root folder on your EdgeTX SD card.
 
-## Widgets and telemetry
+## Widgets, tools and telemetry
 
 - [GPS widget](#gps-widget-widgetsgpsmainlua)
 - [HomeArrow widget](#homearrow-widget-widgetshomearrowmainlua)

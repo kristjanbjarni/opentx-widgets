@@ -1,3 +1,11 @@
+-------------------------------------------------------------------------------
+-- AvgBatt widget
+-- Version: 1.3
+-- Date: 2024-10-03
+-- Author: Kristjan Bjarni Gudmundsson (kristjanbjarni@gmail.com)
+-- License GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
+-- https://github.com/kristjanbjarni/opentx-widgets
+-------------------------------------------------------------------------------
 assert(loadScript("/SCRIPTS/UTIL/util.lua"))()
 
 local DEFAULT_TEXTCOLOR = WHITE

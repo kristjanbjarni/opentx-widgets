@@ -1,3 +1,12 @@
+-------------------------------------------------------------------------------
+-- Utility functions for widgets
+-- Version: 1.3
+-- Date: 2024-10-03
+-- Author: Kristjan Bjarni Gudmundsson (kristjanbjarni@gmail.com)
+-- License GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
+-- https://github.com/kristjanbjarni/opentx-widgets
+-------------------------------------------------------------------------------
+
 -- Global Constants
 ZONE_FONT = {[0]=0,2,3,3,4}
 FONT = {["SMLSIZE"] = 0,["NORMAL"] = 1,["MIDSIZE"] = 2,["DBLSIZE"] = 3,["XXLSIZE"] = 4}
@@ -15,6 +24,7 @@ local DRAW_RIGHT_ALIGN = -2147483648
 local NAME_SIZES = {[0]=0,1,3,3,3}
 local VALUE_SIZES = {[0]=2,2,4,4,4}
 
+-- Zones: (Top bar (0), 1/8 box (1), 1/4 box (2), 1/2 box (3), Full screen (4))
 local ZONE_SIZES = {
   [0]={z=0,w=70,h=39},
   {z=1,w=160,h=32},
@@ -30,6 +40,7 @@ local ZONE_SIZES = {
   {z=1,w=240,h=75},
   {z=2,w=240,h=113},
   {z=3,w=240,h=227},
+  {z=3,w=240,h=272},
   {z=1,w=392,h=42},
   {z=1,w=392,h=56},
   {z=3,w=392,h=85},
@@ -157,10 +168,22 @@ function drawTextZone(zone,x,y,text,color,shadow,font)
   lcd.drawText(zone.x+x,zone.y+y,text,flags)
 end
 
-function drawValueZone(zone,name,value,color,shadow)
+function drawValueZone(zone,name,value,color,shadow,font)
   local z = getZone(zone)
   local name_size = NAME_SIZES[z]
   local value_size = VALUE_SIZES[z]
+  if font == nil then
+    local flags = FONT_FLAGS[value_size]
+    if shadow then
+      flags = flags + SHADOWED
+    end
+    local w = lcd.sizeText(value,flags)
+    if w > zone.w then
+      value_size = value_size - 1
+    end
+  else
+    value_size = font
+  end
   drawTextZone(zone,0,0,name,color,shadow,name_size)
   local y = getFontHeightSpacing(name_size)
   drawTextZone(zone,0,y,value,color,shadow,value_size)
@@ -195,7 +218,7 @@ function rotatePolygon(p,angle)
   angle = math.rad(angle)
   local s = math.sin(angle)
   local c = math.cos(angle)
-  local a = {}  
+  local a = {}
   for i=0,#p,1 do
     local x = p[i].x * c - p[i].y * s;
     local y = p[i].x * s + p[i].y * c;
